@@ -28,12 +28,13 @@ h1 {
     padding: 0;
     display: table;
     clear: both;
+    background-image: url(assets/SunRays.jpg);
 }
 
 .column-1 {
     border: rgb(83, 140, 226) 5px groove;
     float: left; 
-    width: 30%;
+    width: 25%;
     background-color: #538ab8 ;
     padding: 20px;
     height: 815px;
@@ -43,7 +44,6 @@ h1 {
     float: left;
     width: 65%;
     margin-top: 10px;
-    margin-left: 10px;
     text-align: center;
 }
 
@@ -68,7 +68,6 @@ h1 {
 
 .search button {
     float: left;
-    /* width: 40%; */
     padding: 7px;
     background: #87b439;
     color: white;

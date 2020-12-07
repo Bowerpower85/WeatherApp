@@ -1,11 +1,11 @@
-const city = $('.search-field').val().trim();
+let city = $('.search-field').val().trim();
 const APIKey = '46f94e353f50c847934f67beed088d83';
 
 $('.searchBtn').on('click', (event) => {
-    const currentDate = moment().format('M/DD/YYYY');
+    let currentDate = moment().format('M/DD/YYYY');
     city = $('.search-field').val();
 
-    const newCities = JSON.parse(localStorage.getItem('savedCities'));
+    let newCities = JSON.parse(localStorage.getItem('savedCities'));
     if (newCities != null) {
         for (var i = 0; i < newCities.length; i = i + 1) {
             if (newCities.indexOf(city) === -1) {
@@ -18,13 +18,12 @@ $('.searchBtn').on('click', (event) => {
     }
     localStorage.setItem('savedCities', JSON.stringify(newCities));
 
-    showWeather(city);
+    displayWeather(city);
     renderSavedCities(newCities);
 });
 
 displayWeather = (city) => {
-    const queryUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&appid=' + APIKey;
-
+    let queryUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&appid=' + APIKey;
     $.ajax(
         { url: queryUrl, method: 'GET' }
     ).then(function (response) {
@@ -35,7 +34,7 @@ displayWeather = (city) => {
         $('#humidity').text('Humidity:' + response.main.humidity + '%');
         $('#wind').text('wind Speed:' + response.wind.speed + 'MPH');
 
-        const uvUrl = 'https://api.openweathermap.org/data/2.5/uvi?appid=' + APIKey + '&lat=' + response.coord.lat + '&lon=' + response.coord.lat;
+        let uvUrl = 'https://api.openweathermap.org/data/2.5/uvi?appid=' + APIKey + '&lat=' + response.coord.lat + '&lon=' + response.coord.lat;
         $.ajax(
             { url: uvUrl, method: 'GET' }
         ).then(function (uvResponse) {
@@ -61,7 +60,7 @@ displayWeather = (city) => {
 
 
         });
-        const queryUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + APIKey;
+        let queryUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + APIKey;
 
         $('.5Day-Forecast').html('<h2>5-Day Forecast:</h2>');
         $.ajax({
@@ -136,7 +135,7 @@ displayWeather = (city) => {
     {
         event.preventDefault();
         city = ($(this).text());
-        showWeather(city);
+        displayWeather(city);
         console.log(city);
     });
     
