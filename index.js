@@ -18,11 +18,11 @@ $('.searchBtn').on('click', (event) => {
     }
     localStorage.setItem('savedCities', JSON.stringify(newCities));
 
-    displayWeather(city);
+    showWeather(city);
     renderSavedCities(newCities);
 });
 
-displayWeather = (city) => {
+showWeather = (city) => {
     let queryUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&appid=' + APIKey;
     $.ajax(
         { url: queryUrl, method: 'GET' }
@@ -128,14 +128,15 @@ displayWeather = (city) => {
             listItem = $('<li>');
             listItem.attr('class', 'list-group-item');
             listItem.text(newCities[i]);
-    
+            $('.searchedCities').append(listItem)
+
         }
     }
     $('searchedCities').on('click', '.list-group-item', function (event)
     {
         event.preventDefault();
         city = ($(this).text());
-        displayWeather(city);
+        showWeather(city);
         console.log(city);
     });
     
